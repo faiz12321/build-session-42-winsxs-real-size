@@ -1,0 +1,22 @@
+name: test
+on: [push, workflow_dispatch]
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: python -m unittest -v test_winsxs
+      - name: Actual Windows analysis and saved-report parser
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          & powershell -NoProfile -File capture_winsxs.ps1
+          if ($LASTEXITCODE -ne 0) { throw 'Windows analysis failed' }
+          python summarize_winsxs.py results/dism-report.txt
+          if ($LASTEXITCODE -ne 0) { throw 'Report parser refused' }
