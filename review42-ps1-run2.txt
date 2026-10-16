@@ -1,0 +1,240 @@
+### CMD: python --version
+Python 3.12.10
+### EXIT: 0
+
+### CMD: python -m unittest -v test_winsxs
+test_bom (test_winsxs.Files.test_bom) ... ok
+test_directory (test_winsxs.Files.test_directory) ... ok
+test_hardlink (test_winsxs.Files.test_hardlink) ... ok
+test_invalid_utf8 (test_winsxs.Files.test_invalid_utf8) ... ok
+test_linked_parent (test_winsxs.Files.test_linked_parent) ... ok
+test_missing (test_winsxs.Files.test_missing) ... ok
+test_oversize (test_winsxs.Files.test_oversize) ... ok
+test_pipe (test_winsxs.Files.test_pipe) ... skipped 'Unix pipe unavailable'
+test_read_preserves_bytes_mtime (test_winsxs.Files.test_read_preserves_bytes_mtime) ... ok
+test_symlink_existing_dangling_and_loop (test_winsxs.Files.test_symlink_existing_dangling_and_loop) ... ok
+test_traversal (test_winsxs.Files.test_traversal) ... ok
+test_usage (test_winsxs.Files.test_usage) ... ok
+test_actual_dism_zero_bytes_unit (test_winsxs.Parser.test_actual_dism_zero_bytes_unit) ... ok
+test_crlf (test_winsxs.Parser.test_crlf) ... ok
+test_duplicate_field (test_winsxs.Parser.test_duplicate_field) ... ok
+test_duplicate_flag (test_winsxs.Parser.test_duplicate_flag) ... ok
+test_gb_and_mb (test_winsxs.Parser.test_gb_and_mb) ... ok
+test_large_refused (test_winsxs.Parser.test_large_refused) ... ok
+test_localized_unsupported (test_winsxs.Parser.test_localized_unsupported) ... ok
+test_missing_fields (test_winsxs.Parser.test_missing_fields) ... ok
+test_missing_success (test_winsxs.Parser.test_missing_success) ... ok
+test_negative_refused (test_winsxs.Parser.test_negative_refused) ... ok
+test_nul_refused (test_winsxs.Parser.test_nul_refused) ... ok
+test_units (test_winsxs.Parser.test_units) ... ok
+test_unknown_units (test_winsxs.Parser.test_unknown_units) ... ok
+test_yes (test_winsxs.Parser.test_yes) ... ok
+test_zero_is_valid (test_winsxs.Parser.test_zero_is_valid) ... ok
+test_existing_results_file_preserved (test_winsxs.WindowsCapturePreflight.test_existing_results_file_preserved) ... ok
+test_existing_results_folder_preserved (test_winsxs.WindowsCapturePreflight.test_existing_results_folder_preserved) ... ok
+test_linked_lesson_parent_refused (test_winsxs.WindowsCapturePreflight.test_linked_lesson_parent_refused) ... ok
+test_linked_results_refused (test_winsxs.WindowsCapturePreflight.test_linked_results_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 31 tests in 1.683s
+
+OK (skipped=1)
+### EXIT: 0
+
+### CMD: powershell -NoProfile -File capture_winsxs.ps1
+Running DISM component-store analysis, not cleanup. This can take minutes.
+Saved results/dism-report.txt and results/dism-engine.log. DISM exit: 0
+Analysis returned success. No cleanup command was run. Windows may still write servicing logs/state.
+### EXIT: 0
+### RAW REPORT BEFORE PARSER
+
+Deployment Image Servicing and Management tool
+Version: 10.0.26100.5074
+
+Image Version: 10.0.26100.33438
+
+
+[==                         4.8%                           ] 
+
+[====                       8.4%                           ] 
+
+[=======                    12.1%                          ] 
+
+[=========                  16.9%                          ] 
+
+[===========                20.4%                          ] 
+
+[===========                20.4%                          ] 
+
+[===========                20.4%                          ] 
+
+[===========                20.4%                          ] 
+
+[============               21.4%                          ] 
+
+[=============              22.8%                          ] 
+
+[================           28.0%                          ] 
+
+[==================         32.3%                          ] 
+
+[=====================      36.3%                          ] 
+
+[=======================    40.5%                          ] 
+
+[=========================  44.1%                          ] 
+
+[===========================48.7%                          ] 
+
+[===========================53.5%                          ] 
+
+[===========================57.0%=                         ] 
+
+[===========================60.0%==                        ] 
+
+[===========================91.5%=====================     ] 
+
+[===========================91.5%=====================     ] 
+
+[===========================92.4%=====================     ] 
+
+[===========================98.6%========================= ] 
+
+[===========================98.6%========================= ] 
+
+[===========================98.6%========================= ] 
+
+[===========================98.6%========================= ] 
+
+[===========================98.6%========================= ] 
+
+[===========================98.6%========================= ] 
+
+[===========================98.6%========================= ] 
+
+[==========================100.0%==========================] 
+
+Component Store (WinSxS) information:
+
+Windows Explorer Reported Size of Component Store : 6.35 GB
+
+Actual Size of Component Store : 6.26 GB
+
+    Shared with Windows : 3.54 GB
+    Backups and Disabled Features : 2.71 GB
+    Cache and Temporary Data :  0 bytes
+
+Date of Last Cleanup : 2026-10-08 01:06:05
+
+Number of Reclaimable Packages : 2
+Component Store Cleanup Recommended : Yes
+
+The operation completed successfully.
+
+
+### CMD: python summarize_winsxs.py results/dism-report.txt
+Windows Explorer Reported Size of Component Store: 6.35 GB (as reported, rounded)
+Actual Size of Component Store: 6.26 GB (as reported, rounded)
+Shared with Windows: 3.54 GB (as reported, rounded)
+Backups and Disabled Features: 2.71 GB (as reported, rounded)
+Cache and Temporary Data: 0 bytes (as reported, rounded)
+Cleanup recommended: Yes
+Actual includes Shared with Windows. These are not freeable-byte estimates.
+No cleanup or deletion was requested by this parser.
+### EXIT: 0
+
+### CMD: powershell -NoProfile -File capture_winsxs.ps1
+New-Item : An item with the specified name C:\Users\runneradmin\AppData\Local\Temp\lesson42-record-uf6gu2nb\results 
+already exists.
+At C:\Users\runneradmin\AppData\Local\Temp\lesson42-record-uf6gu2nb\capture_winsxs.ps1:15 char:9
++ $null = New-Item -ItemType Directory -Path $out -ErrorAction Stop
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceExists: (C:\Users\runner...f6gu2nb\results:String) [New-Item], IOException
+    + FullyQualifiedErrorId : DirectoryExist,Microsoft.PowerShell.Commands.NewItemCommand
+ 
+### EXIT: 1
+Repeat refused; existing report/log bytes and mtimes preserved. Not a system snapshot.
+### RAW REPORT
+
+Deployment Image Servicing and Management tool
+Version: 10.0.26100.5074
+
+Image Version: 10.0.26100.33438
+
+
+[==                         4.8%                           ] 
+
+[====                       8.4%                           ] 
+
+[=======                    12.1%                          ] 
+
+[=========                  16.9%                          ] 
+
+[===========                20.4%                          ] 
+
+[===========                20.4%                          ] 
+
+[===========                20.4%                          ] 
+
+[===========                20.4%                          ] 
+
+[============               21.4%                          ] 
+
+[=============              22.8%                          ] 
+
+[================           28.0%                          ] 
+
+[==================         32.3%                          ] 
+
+[=====================      36.3%                          ] 
+
+[=======================    40.5%                          ] 
+
+[=========================  44.1%                          ] 
+
+[===========================48.7%                          ] 
+
+[===========================53.5%                          ] 
+
+[===========================57.0%=                         ] 
+
+[===========================60.0%==                        ] 
+
+[===========================91.5%=====================     ] 
+
+[===========================91.5%=====================     ] 
+
+[===========================92.4%=====================     ] 
+
+[===========================98.6%========================= ] 
+
+[===========================98.6%========================= ] 
+
+[===========================98.6%========================= ] 
+
+[===========================98.6%========================= ] 
+
+[===========================98.6%========================= ] 
+
+[===========================98.6%========================= ] 
+
+[===========================98.6%========================= ] 
+
+[==========================100.0%==========================] 
+
+Component Store (WinSxS) information:
+
+Windows Explorer Reported Size of Component Store : 6.35 GB
+
+Actual Size of Component Store : 6.26 GB
+
+    Shared with Windows : 3.54 GB
+    Backups and Disabled Features : 2.71 GB
+    Cache and Temporary Data :  0 bytes
+
+Date of Last Cleanup : 2026-10-08 01:06:05
+
+Number of Reclaimable Packages : 2
+Component Store Cleanup Recommended : Yes
+
+The operation completed successfully.
